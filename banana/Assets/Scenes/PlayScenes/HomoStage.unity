@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 0
   health: 3
-  player: {fileID: 0}
+  player: {fileID: 421825166}
   Stages: []
   UIhealth:
   - {fileID: 1756201215}
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   DieStory: {fileID: 1551114685}
   Defeat: {fileID: 1458074457}
   Clear: {fileID: 1572964396}
-  Player: {fileID: 0}
+  Player: {fileID: 421825163}
   Portal: {fileID: 512689431}
 --- !u!61 &251438009
 BoxCollider2D:
