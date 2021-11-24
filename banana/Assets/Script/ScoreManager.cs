@@ -22,16 +22,25 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+
+    //private void OnGUI()
+    //{
+
+    //    guiStyle.fontSize = 10; //change the font size
+    //    GUILayout.Label("Score : " + stagePoint.ToString(), guiStyle);
+    //}
+
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
-        
+
 
         GUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
 
-        //UIPoint.text = (totalPoint + stagePoint).ToString();
-        GUILayout.Label("Score : " + stagePoint.ToString());
+        guiStyle.fontSize = 35; //change the font size
+        GUILayout.Label("Score : " + stagePoint.ToString(), guiStyle);
 
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();

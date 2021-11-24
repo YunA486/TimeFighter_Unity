@@ -21,6 +21,16 @@ public class PlayerMove : MonoBehaviour
     private float item_jump_cooltime;
 
 
+    public AudioClip audioJump;
+    public AudioClip audioAttack;
+    public AudioClip audioDamaged;
+    public AudioClip audioItem;
+    public AudioClip audioCoin;
+    public AudioClip audioDie;
+    public AudioClip audioFinish;
+
+    AudioSource audioSource;
+
     //----------------------------------------[Overrid Function]
 
     // Initialzation
@@ -30,7 +40,35 @@ public class PlayerMove : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
+        audioSource = GetComponent<AudioSource>();
+    }
 
+    void PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "JUMP":
+                audioSource.clip = audioJump;
+                break;
+            case "ATTACK":
+                audioSource.clip = audioAttack;
+                break;
+            case "DAMAGED":
+                audioSource.clip = audioDamaged;
+                break;
+            case "ITEM":
+                audioSource.clip = audioItem;
+                break;
+            case "COIN":
+                audioSource.clip = audioCoin;
+                break;
+            case "DIE":
+                audioSource.clip = audioDie;
+                break;
+            case "FINISH":
+                audioSource.clip = audioFinish;
+                break;
+        }
     }
 
 
@@ -64,6 +102,10 @@ public class PlayerMove : MonoBehaviour
             isJumping = true;
             animator.SetBool("isJumping", true);    // Jumping Flog
             animator.SetTrigger("doJumping");   // Jumping Animation
+
+            audioSource.clip = audioJump;
+            audioSource.Play();
+
         }
 
         if (jumpPower == 20.0f)
@@ -90,6 +132,9 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && !collision.isTrigger && rigid.velocity.y < -5f)  // -6f : 값이 커질 수록 판정이 약해짐
         {
 
+            audioSource.clip = audioAttack;
+            audioSource.Play();
+
             EnemyMove enemy = collision.gameObject.GetComponent<EnemyMove>();
             enemy.Attack();
 
@@ -110,6 +155,9 @@ public class PlayerMove : MonoBehaviour
 
         if (collision.gameObject.tag == "coin")
         {
+            audioSource.clip = audioCoin;
+            audioSource.Play();
+
             // Point
             bool isYellow = collision.gameObject.name.Contains("YellowJewelry");
             bool isMint = collision.gameObject.name.Contains("MintJewelry");
@@ -148,14 +196,23 @@ public class PlayerMove : MonoBehaviour
         }
         if (collision.gameObject.tag == "healthItem")
         {
+            audioSource.clip = audioItem;
+            audioSource.Play();
+
             gameManager.HealthUp();
         }
         if (collision.gameObject.tag == "invincibleItem")
         {
+            audioSource.clip = audioItem;
+            audioSource.Play();
+
             StartCoroutine("GetInvincible");
         }
         if (collision.gameObject.tag == "random")
         {
+            audioSource.clip = audioItem;
+            audioSource.Play();
+
             Random();
         }
 
@@ -170,6 +227,9 @@ public class PlayerMove : MonoBehaviour
         gameManager.UINextBtn.SetActive(true);
         gameManager.ClearStory.SetActive(true);
         gameManager.Clear.SetActive(true);
+
+        audioSource.clip = audioFinish;
+        audioSource.Play();
     }
 
     void Random()
@@ -187,6 +247,8 @@ public class PlayerMove : MonoBehaviour
         }
         else if (ran == 3)
         {
+            audioSource.clip = audioJump;
+            audioSource.Play();
             jumpPower = 20.0f;
             if (jumpPower == 20.0f)
             {
@@ -274,12 +336,17 @@ public class PlayerMove : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("item_jump"))
         {
+            audioSource.clip = audioJump;
+            audioSource.Play();
             jumpPower = 20.0f;
         }
     }
 
     void onDamaged(Vector2 targetPos)
     {
+        audioSource.clip = audioDamaged;
+        audioSource.Play();
+
         // Health Down
         gameManager.HealthDown();
 
@@ -307,6 +374,9 @@ public class PlayerMove : MonoBehaviour
 
     public void OnDie()
     {
+        audioSource.clip = audioDie;
+        audioSource.Play();
+
         // Sprite Alpha
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
         // Collider Disable
