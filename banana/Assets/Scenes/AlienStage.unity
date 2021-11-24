@@ -621,7 +621,7 @@ SpriteRenderer:
   m_Size: {x: 5.63, y: 8.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &327582609
@@ -2672,7 +2672,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.98823535, g: 0.38823533, b: 0.227451, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2734,7 +2734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857299086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: 1.7, z: -1}
+  m_LocalPosition: {x: -4.04, y: 1.57, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3521,8 +3521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835c11db2f1e4b9468eb6ecc4844e85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalPoint: 0
-  stagePoint: 0
   stageIndex: 0
   health: 3
   player: {fileID: 1848750475}
@@ -3536,7 +3534,17 @@ MonoBehaviour:
   - {fileID: 821980597}
   UIPoint: {fileID: 568189923}
   UIStage: {fileID: 1284218717}
+  UIImg: {fileID: 0}
   UIRestartBtn: {fileID: 283621062}
+  UIRetryBtn: {fileID: 0}
+  UINextBtn: {fileID: 0}
+  UIHomeBtn: {fileID: 0}
+  ClearStory: {fileID: 0}
+  DieStory: {fileID: 0}
+  Defeat: {fileID: 0}
+  Clear: {fileID: 0}
+  Player: {fileID: 0}
+  Portal: {fileID: 0}
 --- !u!61 &1372333474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3859,7 +3867,6 @@ MonoBehaviour:
   movePower: 5
   jumpPower: 16
   gameManager: {fileID: 1372333473}
-  RandomInt: 0
 --- !u!60 &1848750476
 PolygonCollider2D:
   m_ObjectHideFlags: 0
